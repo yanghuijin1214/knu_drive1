@@ -12,13 +12,13 @@ module.exports=(req,res)=>{
         var room=req.params.id;
         var size=0;
 
-        file.mv(path.resolve(__dirname,'../views/img',file.name),async(error)=>{
+        file.mv(path.resolve(__dirname,'../views/img/drive',file.name),async(error)=>{
             size+=file.size;
             console.log(size);
             await File.create({
                 name:file.name,
                 room:room,
-                url:'/img/'+file.name,
+                url:'/img/drive/'+file.name,
                 size:file.size,
                 userid:req.session.userId},
             (error,file)=>{
