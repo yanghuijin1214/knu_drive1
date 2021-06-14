@@ -18,7 +18,7 @@ module.exports=(req,res)=>{
             await File.create({
                 name:file.name,
                 room:room,
-                url:'/img/'+file.name,
+                url:'/drive/'+file.name,
                 size:file.size,
                 userid:req.session.userId},
             (error,file)=>{
