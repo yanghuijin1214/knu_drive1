@@ -12,7 +12,7 @@ module.exports=(req,res)=>{
         var room=req.params.id;
         var size=0;
 
-        file.mv(path.resolve(__dirname,'../views/img',file.name),async(error)=>{
+        file.mv(path.resolve(__dirname,'../views/img/',file.name),async(error)=>{
             size+=file.size;
             console.log(size);
             await File.create({

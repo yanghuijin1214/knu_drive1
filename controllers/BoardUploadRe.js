@@ -7,7 +7,7 @@ module.exports=(req,res)=>{
     console.log(req.files);
     if(req.files!=null){
         let image=req.files.image;
-        image.mv(path.resolve(__dirname,'../views/img',image.name),async(error)=>{
+        image.mv(path.resolve(__dirname,'../views/img/',image.name),async(error)=>{
             await Board.create({title:req.body.title,
                 body:req.body.body,
                 image:'/img/'+image.name,
