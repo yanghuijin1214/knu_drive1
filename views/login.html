@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="loginBox">
+            <div class="loginTitle">
+                <p>KNU DRIVE</p>
+            </div>
+            <div class="loginForm" id="loginForm">
+                <form action="/loginOk" method="post">
+                    <div class="input"><input type="text" placeholder="user id" name="username" required></div>
+                    <div class="input"><input type="password" placeholder="password" name="password" required></div>
+                    <div class="input"><input type="submit" value="로그인"></div>
+                </form>
+            </div>
+            <div class="newUserForm" id="newUserForm">
+                <form action="/joinOk" method="post">
+                    <div class="input"><input type="text" placeholder="user id" name="username" required></div>
+                    <div class="input"><input type="password" placeholder="password" name="password" required></div>
+                    <div class="input"><input type="submit" value="회원가입"></div>
+                </form>
+            </div>
+            <div class="hor" id="hor"></div>
+            <button onclick="change()"><p id="buttonText">회원가입</p></button>
+        </div>
+    </div>
+    <script>
+        function change(){
+            var a = document.getElementById("loginForm");
+            var b = document.getElementById("newUserForm");
+            var c = document.getElementById("hor");
+            var d = document.getElementById("buttonText");
+            if(a.style.display == "none"){
+                a.style.display ="flex";
+                b.style.display ="none";
+                c.style.background ="#FDD20E";
+                d.innerText = "회원가입";
+            }
+            else{
+                a.style.display ="none";
+                b.style.display ="flex";
+                c.style.background ="#c72d1b";
+                d.innerText = "로그인";
+            }
+        }
+    </script>
+</body>
+</html>

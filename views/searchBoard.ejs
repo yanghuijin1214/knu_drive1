@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://code.jQuery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>searchBoard</title>
+    <%if(mode==0){%>
+        <link type="text/css" rel="stylesheet" href="/css/centerSetWhite.css">
+        <%}else{%>
+        <link type="text/css" rel="stylesheet" href="/css/centerSetDark.css">  
+    <%}%>
+</head>
+<body>
+    <div class="board">
+        <div class="direction" id="direction">
+            검색
+        </div>
+        <div class="listHeader" id="listHeader">
+            <div class="name">이름</div>
+            <div class="first">등록한 사람</div>
+            <div class="final">최종 수정자</div>
+            <div class="size">파일 크기</div>
+        </div>
+        <%if(files){
+            for(var i=0;i<files.length; i++){%>
+            <div class="list" id="<%=i%>thList" onclick="slideDown(this.id)">
+                <div class="name"><%=files[i].name%></div>
+                <div class="first"><%=files[i].userid.username%></div>
+                <div class="final"><%=files[i].datePosted.toDateString()%></div>
+                <div class="size"><%=files[i].strsize%></div>
+            </div>
+            <div class="listUnder" id="<%=i%>thListUnder">
+                <form action="/room/delete"  method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
+                    <input type="hidden" name="id" value="<%=files[i]._id%>">
+                    <input type="hidden" name="room" value="<%=room%>">
+                    <button type="submit" class="underBtn">휴지통으로 보내기</button>
+                </form>
+                <a href="<%=files[i].url%>" download>
+                    <button class="underBtn">다운로드</button>
+                </a>
+            </div>
+        <%}}else{%>
+            <p class="none">일치하는 파일이 없습니다.</p>
+        <%}%>
+        
+    </div>
+    <script>
+        function slideDown(classId){
+            var className = classId + "Under";
+            var listUnder = document.getElementById(className);
+            if(listUnder.style.display == "flex"){
+                listUnder.style.display = "none"
+            }
+            else{
+                listUnder.style.display = "flex";
+            }
+        }
+    </script>
+</body>
+</html>

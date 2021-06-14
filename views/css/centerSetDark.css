@@ -1,0 +1,106 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.board {
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  background-color: #343444;
+}
+.board .direction {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 15px;
+  background-color: #343434;
+  color: #fff;
+}
+.board hr {
+  margin: 2px;
+  height: 2px;
+  background-color: #ddd;
+  border: none;
+  outline: none;
+}
+.board .listHeader {
+  width: 100%;
+  min-width: 550px;
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 15px;
+  background-color: #343444;
+  color: #eee;
+}
+.board .name {
+  width: 40%;
+  height: 100%;
+}
+.board .first {
+  width: 20%;
+  height: 100%;
+}
+.board .final {
+  width: 20%;
+  height: 100%;
+}
+.board .size {
+  width: 20%;
+  height: 100%;
+}
+.board .list {
+  width: 100%;
+  min-width: 550px;
+  height: 100%;
+  border-top: solid;
+  border-color: #bbb;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 15px;
+  color: #fff;
+  background-color: #676790;
+}
+.board .list:hover {
+  background-color: #575780;
+  cursor: pointer;
+}
+.board .listUnder {
+  width: 100%;
+  min-width: 550px;
+  height: 100%;
+  display: none;
+  position: relative;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding-left: 10px;
+  background-color: #343444;
+}
+.board .listUnder button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  background-color: #575780;
+  font-size: 15px;
+  font-weight: 550;
+  margin: 5px;
+  padding: 5px;
+  margin-right: 15px;
+  color: #fff;
+}
+.board .listUnder button:hover {
+  text-decoration: underline;
+}

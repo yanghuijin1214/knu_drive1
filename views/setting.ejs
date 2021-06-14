@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <script src="http://code.jQuery.com/jquery-3.6.0.min.js"></script>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link type="text/css" rel="stylesheet" href=<%=(mode)?"/css/setDark.css":"/css/setWhite.css"%>>
+    </link>
+    
+    <style>
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #4169e1;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #DCE2F0;
+        }
+        input:focus+.slider {
+            box-shadow: 0 0 1px #DCE2F0;
+        }
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .accordion {
+            cursor: pointer;
+            transition: 0.4s
+        }
+        .active,
+        .accordion:hover {
+            text-decoration: underline;
+        }
+        .bigPanel{
+            display:none;
+        }
+        .panel {
+            width:90%;
+            min-width: 600px;
+            padding: 8px 18px;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+        #panelHeader{
+            font-size:18px;
+            font-weight: 700;
+        }
+        .panel .date{
+            width:25%;
+        }
+        .panel .user{
+            width:25%;
+        }
+        .panel .do{
+            width:25%;
+        }
+        .panel .file{
+            width:25%;
+        }
+        .page-header{
+            display:flex;
+            position: relative;
+            align-items: center;
+        }
+        #settingDiv{
+            margin-right:10px;
+            display:flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+        #settingImage{
+            width: 30px;
+            height:30px;
+            object-fit: cover;
+        }
+        .col-sm-12 #style{
+            display: flex;
+            position: relative;
+            align-items: center;
+        }
+        .col-sm-12 #style #sunImage{
+            margin-right: 20px;
+        }
+        .col-sm-12 #style #moonImage{
+            margin-left: 20px;
+        }
+        .finishBtn{
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="modal" class="settingModal">
+        <div class="setting-modal-content">
+            <head>
+                <img id="xImage" src="https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/xiconWhite.png?raw=true" style="height: 20px; width: 20px; float:right; cursor:pointer;"
+                    onclick="closeModal();">
+            </head>
+            <div class="page-header">
+                <div id="settingDiv"><img id="settingImage" src="https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/setWhite.png?raw=true" style="height: 25px; width: 25px "></div>
+                <h2>환경설정</h2>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>드라이브 용량</h4>
+                    <span>
+                        <meter class="Meter" min="<%=isize%>" max="20000000000" value="20"></meter>
+                        20GB 중 <%=size%> 사용
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>
+                        <h4>화면 스타일</h4>
+                        <div id="style">
+                            <img id="sunImage" src="https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/sun.png?raw=true" style="height: 30px; width: 30px"> &nbsp;
+                            <label class="switch">
+                            <input type="checkbox" id="mode" onclick="toggle()" <%=(mode)?"checked":""%>>
+                            <span class="slider round"></span>
+                            </label>
+                            &nbsp;
+                            <img id="moonImage" src="https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/moon.png?raw=true" style="height: 35px; width: 35px">
+                        </div>
+                    </span>
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 accordion">
+                    <h4>작업 기록
+                        <img id="directionImage" src="https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/down.png?raw=true"
+                            style="height: 15px; width: 15px; margin-left: 10px;"></h4>
+                </div>
+                <div class="bigPanel">
+                    <div class="panel" id="panelHeader">
+                        <div class="date">날짜</div>
+                        <div class="user">사용자</div>
+                        <div class="do">작업</div>
+                        <div class="file">파일명</div>
+                    </div>
+                    <%for(var i=0;i<all.length; i++){%>
+                    <div class="panel">
+                        <div class="date"><%=all[i].updatePosted.toDateString()%></div>
+                        <div class="user"><%=all[i].userid.username%></div>
+                        <div class="do"><%=all[i].task%></div>
+                        <div class="file"><%=all[i].name%></div>
+                    </div>
+                    <%}%>
+                </div>
+                    
+                
+            </div>
+            <div style="text-align: center; padding-bottom: 10px;padding-top: 10px;">
+                <form action="/room/<%=room%>/mode" method="post" id="modal_frm" onsubmit="DoSubmit()">
+                    <input type="hidden" name="mode_v" id="mode_v" value="">
+                    <button class="finishBtn" type="submit" onclick="closeModal();">완료</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //const modal_frm = document.getElementById('modal_frm');
+    const moon = ["https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/moon.png?raw=true"
+    , "https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/moonDark.png?raw=true"];
+    const sun = ["https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/sun.png?raw=true"
+    , "https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/sunDark.png?raw=true"];
+    const set = ["https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/setWhite.png?raw=true"
+    , "https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/setDark.png?raw=true"];
+    const direction = ["https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/down.png?raw=true?raw=true"
+    , "https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/up.png?raw=true"];
+    const x = ["https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/xiconWhite.png?raw=true"
+    , "https://github.com/Da01002/2021_1_WebProgramming/blob/main/FinalProject/setting/img/xIcon.png?raw=true"]
+    var directionIcon = document.getElementById("directionImage");
+    function toggle() {
+        var moonIcon = document.getElementById("moonImage");
+        var sunIcon = document.getElementById("sunImage");
+        var setIcon = document.getElementById("settingImage");
+        var link = document.getElementsByTagName('link')[0];
+        var xIcon = document.getElementById("xImage");
+        if (link.href.includes("setWhite.css")) {
+            window.parent.darkMode();
+            link.href = "/css/setDark.css";
+            moonIcon.src = moon[1];
+            sunIcon.src = sun[1];
+            setIcon.src = set[1];
+            xIcon.src = x[1];
+        }
+        else {
+            window.parent.whiteMode();
+            link.href = "/css/setWhite.css";
+            moonIcon.src = moon[0];
+            sunIcon.src = sun[0];
+            setIcon.src = set[0];
+            xIcon.src = x[0];
+        }
+    }
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+                directionIcon.src = direction[0];
+            } 
+            else {
+                panel.style.display = "block";
+                directionIcon.src = direction[1];
+            }
+        });
+    }
+    jQuery(document).ready(function () {
+        $("#modal").show();
+    });
+    function closeModal() {
+       
+        $('#settingIframe', parent.document).css("display", "none");
+    };
+    function DoSubmit(){
+        var isChecked = document.getElementById('mode').checked;
+        var the_value = isChecked ? 1 : 0;
+
+        document.getElementById('mode_v').value=the_value;
+    }
+    
+</script>
+</html>

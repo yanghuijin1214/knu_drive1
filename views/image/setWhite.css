@@ -1,0 +1,75 @@
+.page-header {
+    color: #50586C;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ffffff;
+   /* background-color: #FFF0F5;*/
+}
+
+
+/* The Modal (background) */
+.settingModal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 10;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.setting-modal-content {
+    overflow: auto;
+    background-color: #DCE2F0;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 800px;
+    height: 430px;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/*"cursor:pointer;background-color: pink;text-align: center; padding-bottom: 10px;padding-top: 10px;"*/
+.finishBtn {
+    cursor: pointer;
+    background-color: #50586C;
+    text-align: center;
+    font-size: 13pt;
+    color: #DCE2F0;
+    width: 750px;
+    height: 45px;
+    border: 0;
+    outline: 0;
+}
+
+.finishBtn:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 13pt;
+    color: #50586C;
+    width: 750px;
+    height: 45px;
+    border: 0;
+    outline: 0;
+}
+
+
+

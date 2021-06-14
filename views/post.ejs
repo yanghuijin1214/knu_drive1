@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <style>
+    body{
+      min-width: 800px;
+    }
+    .header{
+      width:100%;
+      height:50px;
+      font-size: 20px;    
+      font-weight: bolder;
+      padding: 15px;
+      background-color: #4169e1;
+      color: #fff;
+    } 
+    .post-heading{
+      padding: 20px 0 5px 10px;
+    }
+    #btnList, #btnDelete{
+      padding:5px;
+      margin-right: 25px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+  </style>
+  <%if(mode==1){%>
+    <link rel="stylesheet" href="/css/boardDark.css">
+    <%}%>
+</head>
+
+
+<body>
+
+  <div class="header">
+    게시판
+  </div>
+<div>
+  <!-- Page Header -->
+  <header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+
+            <h3><%=board.title%></h3>
+            <span class="meta">Posted by
+              <%=board.userid.username%>
+              on <%=board.datePosted.toDateString()%> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <hr>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <%if(board.image){%>
+                <img src="<%=board.image%>" width="100%" alt="boardimage">
+                <br/>
+            <%}%>
+          <%=board.body%>
+        </div>
+      </div>
+    </div>
+  </article>
+  <hr>
+  <div style="margin-top : 20px">
+  
+  <%if(match){%>
+	<!--<button type="button" class="btn btn-sm btn-primary float-end" id="btnUpdate" style="margin-left: 5px; margin-right: 5px;">수정</button>-->
+  <form action="/room/<%=room%>/board/delete" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
+    <input type="hidden" value="<%=board._id%>" name="id">
+    <button type="submit" class="btn btn-sm btn-primary float-end" id="btnDelete" style="margin-left: 5px; margin-right: 5px;">삭제</button>
+  </form>
+
+  <%}%>
+  <button type="button" class="btn btn-sm btn-primary float-end" id="btnList" onclick="window.location.href='/room/<%=room%>/boards'" style="margin-left: 5px;">목록</button>
+ </div>
+</div>
+</body>
+
+</html>

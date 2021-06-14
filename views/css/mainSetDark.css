@@ -1,0 +1,447 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.container {
+  overflow: hidden;
+  height: 100vh;
+}
+hr {
+  margin: 10px 0px;
+  background-color: rgb(0, 0, 0, 0.001);
+}
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 10px 0px 8px rgba(200, 200, 200, 0.4);
+  z-index: 1000;
+  background-color: #343444;
+}
+.header .left {
+  display: flex;
+  position: relative;
+  width: 15%;
+  min-width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+.header .left .name {
+  width: 200px;
+  height: 34px;
+  padding-left: 5px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.header .left .name h2 {
+  color: #ddd;
+  font-size: 35px;
+  font-weight: bolder;
+}
+.header .search {
+  display: flex;
+  position: relative;
+  width: 65%;
+  padding: 10px;
+}
+.header .search .searchBox {
+  display: flex;
+  position: relative;
+  width: 75%;
+  min-width: 500px;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.1);
+  align-items: center;
+  padding: 0 25px;
+  border-radius: 6px;
+  background-color: #ccc;
+}
+.header .search .searchBox form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.header .search .searchBox input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 300;
+}
+.header .search .searchBox input::placeholder {
+  color: #000;
+}
+.header .search .searchBox .glass {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.header .search .searchBox .glass img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.header .icon {
+  display: flex;
+  position: relative;
+  width: 20%;
+  min-width: 250px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 0 10px;
+}
+.header .icon .openModal {
+  width: 30px;
+  height: 30px;
+  background-color: #343444;
+  outline: none;
+  cursor: pointer;
+  margin-right: 30px;
+  border: none;
+}
+.header .icon .openModal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: invert(1);
+}
+.header .icon .driveName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ddd;
+}
+.header .icon .logout {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+  background-color: #fff;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #343444;
+}
+.header .icon .logout:hover {
+  text-decoration: underline;
+}
+.main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #494949;
+}
+.main .leftBanner {
+  width: 15%;
+  min-width: 220px;
+  height: 100%;
+  border-right: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: #373752;
+}
+.main .leftBanner .menu .new {
+  width: 100%;
+  height: 60px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.main .leftBanner .menu .new .round {
+  width: 70%;
+  min-width: 150px;
+  height: 100%;
+  border-radius: 80px;
+  margin-top: 5px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+  cursor: pointer;
+  filter: invert(1);
+  background-color: #343434;
+}
+.main .leftBanner .menu .new .round::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 80px;
+  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.3);
+}
+.main .leftBanner .menu .new .round:hover {
+  box-shadow: 5px 5px 5px 2px rgb(0, 0, 0, 0.1);
+  background-color: rgb(0, 0, 0, 0.05);
+}
+.main .leftBanner .menu .new .round .newBtn {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-radius: 80px;
+  z-index: 1;
+  filter: invert(1);
+}
+.main .leftBanner .menu .new .round .newBtn p {
+  margin-top: 7px;
+  margin-right: 10px;
+  font-size: 30px;
+  font-weight: bolder;
+  color: #000;
+  padding: 0 0 5px 10px;
+}
+.main .leftBanner .menu .clicked {
+  width: 100%;
+  height: 50px;
+  border-radius: 0px 30px 30px 0px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-weight: bolder;
+  outline: none;
+  border: solid;
+  border-width: 2px;
+  border-color: #fff;
+  margin: 5px 0px;
+  background-color: #343444;
+  color: #fff;
+}
+.main .leftBanner .menu .clicked .lead {
+  filter: invert(1);
+}
+.main .leftBanner .menu .nonclick {
+  width: 100%;
+  height: 50px;
+  border-radius: 0px 30px 30px 0px;
+  margin: 5px 0px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: #cbcbcb;
+}
+.main .leftBanner .menu .nonclick:hover {
+  background-color: rgb(0, 0, 0, 0.05);
+  filter: invert(1);
+}
+.main .leftBanner .menu .lead {
+  width: 15px;
+  height: 15px;
+  margin: 0 11px 0 8px;
+}
+.main .leftBanner .menu img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotate(270deg);
+}
+.main .leftBanner .menu .write {
+  font-size: 15px;
+  font-weight: 800;
+}
+.main .leftBanner .cloud {
+  width: 100%;
+  height: 100px;
+  padding: 0 20px;
+}
+.main .leftBanner .cloud .store {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+}
+.main .leftBanner .cloud .meter {
+  width: 100%;
+}
+.main .leftBanner .cloud p {
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+}
+.main .leftBanner .userListContainer {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.main .leftBanner .userListContainer .userListBox {
+  width: 100%;
+  height: 210px;
+}
+.main .leftBanner .userListContainer .userListBox .userListBoxTop {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343480;
+  color: #fff;
+}
+.main .leftBanner .userListContainer .userListBox .userListBoxTop .refresh {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+.main
+  .leftBanner
+  .userListContainer
+  .userListBox
+  .userListBoxTop
+  .refresh
+  .refreshBtn {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  background-color: #fff;
+  border: none;
+  outline: none;
+}
+.main .leftBanner .userListContainer .userListBox .userListBoxTop .refresh img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.main .leftBanner .userListContainer .userListBox .userListBoxBottom {
+  width: 100%;
+  height: 170px;
+  padding: 5px;
+  background-color: #676790;
+  color: #fff;
+}
+.main .center {
+  overflow-y: auto;
+  width: 85%;
+  height: 100%;
+  padding-left: 7px;
+  margin-top: 7px;
+  background-color: #494949;
+}
+.main .center .boardIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.main .center .noticeIframe {
+  width: 100%;
+  height: 100%;
+  display: none;
+  border: none;
+}
+.main .center .trashIframe {
+  width: 100%;
+  height: 100%;
+  display: none;
+  border: none;
+}
+.main .center .searchIframe {
+  width: 100%;
+  height: 100%;
+  display: none;
+  border: none;
+}
+.newModal {
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  top: 10%;
+  left: 10%;
+  display: none;
+  z-index: 1;
+  background-color: #bdbdbd;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+  filter: invert(1);
+}
+.newModal .newModalBox {
+  width: 90%;
+  height: 100%;
+  padding: 15px;
+}
+.newModal .newModalBox form input[type="file"] {
+  font-size: 15px;
+  overflow: hidden;
+}
+.newModal .newModalBox form button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 18px;
+  padding-bottom: 4px;
+  font-weight: 500;
+  margin-top: 20px;
+  border-bottom: solid;
+  border-color: #333;
+}
+.newModal .newModalClose {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.newModal .newModalClose img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.settingIframe {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.modalLayer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}

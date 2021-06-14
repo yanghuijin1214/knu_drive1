@@ -1,0 +1,75 @@
+body {
+    background-color: #343444;
+    color: white;
+}
+
+.table {
+    color: #ddd;
+}
+
+#titleHover:hover{
+ color: white;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+   background-color:rgb(44, 43, 43);
+   color: white;
+ }
+
+ .table-striped > tbody > tr:nth-of-type(even) {
+   color:white;
+ }
+ .table-hover > tbody > tr:hover {
+   color: white;
+   background-color: #676790;
+ }
+
+ .header{
+   width:100%;
+   height:50px;
+   font-size: 20px;    
+   font-weight: bolder;
+   padding: 15px;
+   background-color: #343434;
+   color: #fff;
+}
+
+ .pagination > li > a,
+.pagination > li > span {
+ position: relative;
+ float: left;
+ padding: 6px 12px;
+ margin-left: -1px;
+ line-height: 1.42857143;
+ color: #ddd;
+ text-decoration: none;
+ background-color: rgb(36, 34, 34);
+ border: 1px solid #ddd;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+ color: #ddd;
+ background-color: #676790;
+ border-color: #ddd;
+}
+
+.btn-primary {
+   color: #ddd;
+   background-color: rgb(36, 34, 34);
+   border-color: darkgray;
+ }
+
+ .btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+ color: #ddd;
+ background-color: #676790;
+ border-color: #676790;
+ 
+}

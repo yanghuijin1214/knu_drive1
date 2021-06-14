@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/driveEx.css">
+</head>
+<body>
+    <h3>총 유저 수 : <%=users.length%></h3>
+    <ul>
+    <%for(var i=0;i<users.length ; i++){%>
+        <li><%=users[i].username%></li>
+    <%}%>
+    </ul>
+
+    <div class="userListBoxTop">
+        <p>현재 인원 : <%=users.length%></p>
+        <div class="refresh">
+            <button class="refreshBtn" onClick="window.location.reload()"><img src="https://github.com/Yoonlang/web-programming/blob/master/html/assets/refresh.png?raw=true"></button>
+        </div>
+    </div>
+    <div class="userListBoxBottom">
+        <%for(var i=0;i<users.length ; i++){%>
+            <div class="showUserList"><%=users[i].username%></div>
+        <%}%>
+    </div>
+</body>
+</html>

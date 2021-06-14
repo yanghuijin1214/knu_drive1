@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+
+    <style>
+      #titleHover:hover{
+          color: #0063B2;
+      }
+
+      .header{
+          width:100%;
+          height:50px;
+          font-size: 20px;    
+          font-weight: bolder;
+          padding: 15px;
+          background-color: #4169e1;
+          color: #fff;
+      }
+  </style>
+
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      <%if(mode==1){%>
+      <link rel="stylesheet" href="/css/boardDark.css">
+      <%}else{%>
+      <link rel="stylesheet" href="">
+      <%}%>
+    </head>
+<body>
+
+  <div class="header">
+    게시판
+</div>
+    
+
+    <div class="container">
+    <table class="table table-striped table-hover" >
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>날짜</th>
+            </tr>
+        </thead>
+        <!--style="cursor: pointer;"-->
+        <tbody >
+            <% for(var i=0; i<boards.length; i++){ %>
+                    <tr onclick="window.location.href ='/room/<%=room%>/board/<%=boards[i]._id%>';">
+                        <td><%= i+1 %></td>
+                        <td><%=boards[i].title%></td>
+                        <td><%=boards[i].userid.username %></td>
+                        <td><%=boards[i].datePosted.toDateString()%></td>
+                    </tr>
+                <%}%>
+        </tbody>
+    </table>
+
+    <div>
+    <a href = "/room/<%=room%>/boards/upload" class="btn btn-primary float-end">글쓰기</a>
+    </div>
+    <br>
+    <div>
+
+      <!--
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              
+              <%for(var i=1;i <=totalpage;i++){%>
+                <li class="page-item"><a class="page-link" href="/room/<%=room%>/boards/?id=<%=i%>"><%=i%></a></li> 
+              <%}%>  
+             
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+            -->
+    </div>
+</div>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+</body>
+</html>

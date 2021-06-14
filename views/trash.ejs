@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trash</title>
+    <%if(mode==0){%>
+    <link type="text/css" rel="stylesheet" href="/css/centerSetWhite.css">
+    <%}else{%>
+    <link type="text/css" rel="stylesheet" href="/css/centerSetDark.css">  
+    <%}%>
+</head>
+<body>
+    <div class="board" id="main">
+        <div class="direction" id="direction">
+            휴지통
+        </div>
+        <div class="listHeader" id="listHeader">
+            <div class="name">이름</div>
+            <div class="first">등록한 사람</div>
+            <div class="final">최종 수정자</div>
+            <div class="size">파일 크기</div>
+        </div>
+        <%for(var i=0;i<trash.length; i++){%>
+            <div class="list" id="<%=i%>thList" onclick="slideDown(this.id)">
+                <div class="name"><%=trash[i].name%></div>
+            <div class="first"><%=trash[i].userid.username%></div>
+            <div class="final"><%=trash[i].datePosted.toDateString() %></div>
+            <div class="size"><%=trash[i].strsize%></div>
+            </div>
+            <div class="listUnder" id="<%=i%>thListUnder">
+                <form action="/room/<%=room%>/trash/delete"  method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                    <input type="hidden" name="id" value="<%=trash[i]._id%>">
+                    <button type="submit" class="underBtn">삭제</button>
+                </form>
+                
+                <form action="/room/<%=room%>/restore"  method="post" onsubmit="return confirm('복구하시겠습니까?');">
+                    <input type="hidden" name="id" value="<%=trash[i]._id%>">
+                    <button type="submit" class="underBtn">복구</button>
+                </form>
+                
+            </div>
+        <%}%>
+    </div>
+    <script>
+        function slideDown(classId){
+            var className = classId + "Under";
+            var listUnder = document.getElementById(className);
+            if(listUnder.style.display == "flex"){
+                listUnder.style.display = "none"
+            }
+            else{
+                listUnder.style.display = "flex";
+            }
+        }
+    </script>
+</body>
+</html>

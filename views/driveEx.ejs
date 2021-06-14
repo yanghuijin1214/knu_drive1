@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://code.jQuery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive</title>
+    <%if(mode==0){%>
+    <link type="text/css" rel="stylesheet" href="/css/mainSetWhite.css">
+    <%}else{%>
+    <link type="text/css" rel="stylesheet" href="/css/mainSetDark.css">
+    <%}%>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="header">
+            <div class="left">
+                <div class="name">
+                    <h2 id="knuDrive">KNU DRIVE</h2>
+                </div>
+            </div>
+            <div class="search">
+                <div class="searchBox" id="searchBox">
+                    <input type="text" id="search_txt" placeholder="드라이브에서 검색">
+                    <button class="glass" type="submit" onclick="clickSearch()">
+                        <img src="https://github.com/Yoonlang/21-1WebProgramming/blob/main/find.png?raw=true">
+                    </button>
+                </div>
+            </div>
+            <div class="icon">
+                <button class="openModal" id="openModal" onclick="openModal()">
+                    <img src="https://github.com/Yoonlang/21-1WebProgramming/blob/main/gear.png?raw=true">
+                </button>
+                <div class="driveName" id="driveName"><%=user%></div>
+                <div style="margin-left:20px;"><a class="logout" id="logout" href="/logout">logout</a></div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="leftBanner" id="leftBanner">
+                <div class="menu">
+                    <div class="new">
+                        <div class="round" id="round">
+                            <button class="newBtn" id="newBtn" onclick="openNewModal()">
+                                <p>+</p>새로 만들기
+                            </button>
+                        </div>
+                    </div>
+                    <button class="clicked" id="driveBtn" onclick="choiceLeftBanner(id)">
+                        <div class="lead"><img src="https://github.com/Yoonlang/21-1WebProgramming/blob/main/list.png?raw=true"></div>
+                        <div class="write">공유 드라이브</div>
+                    </button>
+                    <button class="nonclick" id="boardBtn" onclick="choiceLeftBanner(id)">
+                        <div class="lead"><img src="https://github.com/Yoonlang/21-1WebProgramming/blob/main/list.png?raw=true"></div>
+                        <div class="write">게시판</div>
+                    </button>
+                    <button class="nonclick" id="trashBtn" onclick="choiceLeftBanner(id)">
+                        <div class="lead"><img src="https://github.com/Yoonlang/21-1WebProgramming/blob/main/list.png?raw=true"></div>
+                        <div class="write">휴지통</div>
+                    </button>
+                </div>
+                <hr>
+                <div class="cloud">
+                    <h4 class="store" id="store">드라이브 용량</h4>
+                    <meter class="meter" min="0" max="20000000000" value="<%=isize%>"></meter>
+                    <p id="storeP">20GB 중 <%=size%> 사용</p>
+                </div>
+                <hr>
+                <div class="userListContainer">
+                    <div class="userListBox" id="userListBox">
+                        <div class="userListBoxTop" id="userListBoxTop">
+                            <p>현재 인원 : <%=users.length%> 명</p>
+                            <div class="refresh">
+                                <button class="refreshBtn" onClick="refresh()"><img src="https://github.com/Yoonlang/web-programming/blob/master/html/assets/refresh.png?raw=true"></button>
+                            </div>
+                        </div>
+                        <div class="userListBoxBottom" id="userListBoxBottom">
+                            <%for(var i=0;i<users.length;i++){%>
+                                <div class="showUserList"><%=users[i].username%></div>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center" id="center">
+                <iframe name="boardIframe" class="boardIframe" id="boardIframe" src="/room/<%=room%>/main"></iframe>
+                <iframe name="noticeIframe" class="noticeIframe" id="noticeIframe" src="/room/<%=room%>/boards"></iframe>
+                <iframe name="trashIframe" class="trashIframe" id="trashIframe" src="/room/<%=room%>/trash"></iframe>
+                <iframe name="searchIframe" class="searchIframe" id="searchIframe" src="/room/<%=room%>/search"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="newModal" id="newModal">
+        <div class="newModalBox" id="newModalBox">
+            <form action="/room/<%=room%>/upload" method="post" enctype="multipart/form-data">
+                <input type="file" id="file" name="file">
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <button class="newModalClose" onclick="closeNewModal()">
+            <img src="https://github.com/Yoonlang/web-programming/blob/master/html/assets/cancel.png?raw=true">
+        </button>
+    </div>
+    <iframe class="settingIframe" id="settingIframe" src="/room/<%=room%>/setting"></iframe>
+    <div class="modalLayer" id="modalLayer"></div>
+    <script>
+        var btnId = new Array();
+        var boardId = new Array();
+        var iframe = new Array();
+        btnId[0] = document.getElementById("driveBtn");
+        btnId[1] = document.getElementById("boardBtn");
+        btnId[2] = document.getElementById("trashBtn");
+        boardId[0] = document.getElementById("boardIframe");
+        boardId[1] = document.getElementById("noticeIframe");
+        boardId[2] = document.getElementById("trashIframe");
+        boardId[3] = document.getElementById("searchIframe");
+        function clickSearch(){
+           var search="/?search="+document.getElementById("search_txt").value;
+            
+            document.getElementById("searchIframe").src ="/room/<%=room%>/search"+search;
+            console.log(document.getElementById("searchIframe").src);
+            boardId[0].style.display = "none";
+            boardId[1].style.display = "none";
+            boardId[2].style.display = "none";
+            boardId[3].style.display = "flex";
+        }
+        function choiceLeftBanner(id){
+            var targetId = document.getElementById(id);
+            for(var i = 0; i < 3; i++){
+                btnId[i].className = "nonclick";
+            }
+            targetId.className = "clicked";
+            if(btnId[0] == targetId){
+                boardId[0].style.display = "flex";
+                boardId[1].style.display = "none";
+                boardId[2].style.display = "none";
+                boardId[3].style.display = "none";
+            }
+            if(btnId[1] == targetId){
+                boardId[0].style.display = "none";
+                boardId[1].style.display = "flex";
+                boardId[2].style.display = "none";
+                boardId[3].style.display = "none";
+            }
+            if(btnId[2] == targetId){
+                boardId[0].style.display = "none";
+                boardId[1].style.display = "none";
+                boardId[2].style.display = "flex";
+                boardId[3].style.display = "none";
+            }
+        }
+        function openModal(){
+            var modal = document.getElementById("settingIframe");
+            modal.style.display = "flex";
+        }
+        function openNewModal(){
+            var modal = document.getElementById("newModal");
+            var modalLayer = document.getElementById("modalLayer");
+            modal.style.display = "flex";
+            modalLayer.style.display = "flex";
+        }
+        $(document).ready(function(){
+            var check = $("#settingIframe").get(0).contentWindow;
+            $("#modal").hide();
+            $("#modalLayer").hide();
+        });
+        function closeNewModal(){
+            var modal = document.getElementById("newModal");
+            var modalLayer = document.getElementById("modalLayer");
+            modal.style.display = "none";
+            modalLayer.style.display = "none";
+        }
+        function darkMode(){
+            var link = document.getElementsByTagName('link')[0];
+            var board = boardIframe.document.getElementsByTagName('link')[0];
+            var trash = trashIframe.document.getElementsByTagName('link')[0];
+            var notice = noticeIframe.document.getElementsByTagName('link')[1];
+            var search = searchIframe.document.getElementsByTagName('link')[0];
+            link.href = "/css/mainSetDark.css";
+            board.href = "/css/centerSetDark.css";
+            trash.href = "/css/centerSetDark.css";
+            notice.href = "/css/boardDark.css";
+            search.href = "/css/centerSetDark.css";
+        }
+        function whiteMode(){
+            var link = document.getElementsByTagName('link')[0];
+            var board = boardIframe.document.getElementsByTagName('link')[0];
+            var trash = trashIframe.document.getElementsByTagName('link')[0];
+            var notice = noticeIframe.document.getElementsByTagName('link')[1];
+            var search = searchIframe.document.getElementsByTagName('link')[0];
+            link.href = "/css/mainSetWhite.css";
+            board.href = "/css/centerSetWhite.css";
+            trash.href = "/css/centerSetWhite.css";
+            notice.href = "";
+            search.href = "/css/centerSetWhite.css";
+        }
+        function refresh(){
+            //userListBox
+            $('#userListBox').load(window.location.href+' #userListBox');
+        }
+    </script>
+</body>
+</html>

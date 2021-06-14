@@ -1,0 +1,105 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .keyBox {
+  width: 400px;
+  height: 500px;
+  background-color: #fff;
+  z-index: 1;
+  border-radius: 20px;
+  padding: 25px 25px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .keyBox .keyTitle {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.container .keyBox .keyTitle p {
+  font-size: 25px;
+  font-weight: bolder;
+}
+.container .keyBox .putKey {
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+}
+.container .keyBox .putKey {
+  width: 350px;
+  height: 200px;
+  margin-bottom: 25px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.container .keyBox .putKey input {
+  width: 100%;
+  outline: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #000;
+  border-bottom: 2px solid #0063b2;
+}
+.container .keyBox .putKey input::placeholder {
+  color: #000;
+}
+.container .keyBox .putKey input[type="submit"] {
+  font-size: 20px;
+  font-weight: bolder;
+  color: #fff;
+  border: none;
+  background-color: #0063b2;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding: 12px;
+  cursor: pointer;
+}
+.container .keyBox .hor {
+  margin: 5px 20px 30px 20px;
+  width: 90%;
+  height: 3px;
+  border: none;
+  background-color: #0063b2;
+  border-radius: 2px;
+}
+.container .keyBox .backToLogin {
+  width: 150px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #eee;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.container .keyBox a {
+  text-decoration: none;
+  color: #000;
+}
